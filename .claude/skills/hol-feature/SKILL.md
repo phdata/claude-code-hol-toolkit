@@ -77,19 +77,45 @@ For each feature, write:
 
 ## Step 4: Save Output
 
-Write all proposals to `.hol/features/proposals.md` with a header:
+Write **two files** — one for participants, one for facilitators:
+
+### `.hol/features/briefs.md` (participant-facing)
+
+Contains only the feature name and brief for each proposal. This is what participants read in Act 3.
 
 ```markdown
-# Feature Proposals for {App Name}
+# Feature Briefs for {App Name}
 
 Pick ONE feature for the spec-driven build exercise (Acts 3-4).
 Each feature is designed to be specced in ~5 min and built in ~25 min with Claude Code.
 
+**Recommended:** {Feature Name} — best default choice for most participants.
+
 ---
 
-{proposals here}
+### {Feature Name}
+{1-2 sentence brief}
+
+### {Feature Name}
+{1-2 sentence brief}
+
+...
+```
+
+### `.hol/features/proposals.md` (facilitator-only)
+
+Contains the full proposals with affected files, spec outlines, stretch goals, and recommendation rationale.
+
+```markdown
+# Feature Proposals for {App Name}
+
+FACILITATOR ONLY — Do not share with participants. Participants receive briefs.md.
+
+---
+
+{full proposals here, using the template from Step 3}
 ```
 
 ## Step 5: Recommend
 
-At the end of the file, add a "Facilitator Recommendation" section suggesting which feature is the best default choice and why (typically the one with the clearest before/after demo and the most satisfying implementation path).
+In `briefs.md`, put the recommended feature first and mark it clearly. In `proposals.md`, add a "Facilitator Recommendation" section explaining why it's the best default (clearest before/after demo, most satisfying implementation path).

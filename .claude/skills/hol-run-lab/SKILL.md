@@ -12,6 +12,15 @@ You are simulating a workshop participant to validate that a HOL lab works end-t
 1. **Do NOT read `.hol/bugs/answers.md` until AFTER you've attempted Act 2.** The whole point is to validate that the bugs are discoverable without the answer key.
 2. **Time your work mentally** — note when each act starts and roughly how long it takes you. Human participants will take 2-3x longer.
 3. **Be critical** — if something is confusing, broken, or too easy, say so. A failed validation now saves 20 frustrated participants later.
+4. **You cannot truly simulate a cold start.** You've already read the codebase during planning. Focus your evaluation on whether a *human* newcomer would have enough context to orient themselves — not on your own experience.
+
+## Pass/Fail Rubric
+
+Use these definitions consistently across all acts:
+
+- **FAIL** — A blocker prevents completing the act. Examples: app won't start, seed data is broken/missing, bug is unfindable after 20 min of focused effort, feature is unbuildable in 30 min.
+- **PASS WITH NOTES** — The act is completable but has meaningful friction. Examples: misleading error messages, confusing naming, an endpoint 500s on edge-case seed data, spec template is unclear on a section, bug is findable but the diagnosis path is indirect.
+- **PASS** — The act works as designed with no significant friction.
 
 ## Act 1 — Explore (Target: 10 min for humans)
 
@@ -35,14 +44,17 @@ Simulate a cold start. You've never seen this repo before.
 - [ ] Is the seed data visible via API?
 - [ ] Are the file names and structure intuitive?
 - [ ] Is the CLAUDE.md helpful without being a spoiler?
+- [ ] Does seed.py output match the data visible via API? (record counts, entity types)
 
 ## Act 2 — Fix (Target: 20 min for humans)
 
 Find and fix the planted bugs WITHOUT reading the answer keys.
 
-1. Run `pytest` and examine the failures
-2. For each failing test:
-   - Read the test to understand what it expects
+**To better simulate bounded knowledge**, run the debugging in a subagent. Give it only the `pytest` output and instruct it to diagnose from symptoms — do not pre-load codebase context. This prevents your earlier exploration from short-circuiting the diagnosis path a human would follow.
+
+1. Run `pytest` and capture the output
+2. Launch a subagent with the test output. The subagent should:
+   - Read the failing test to understand what it expects
    - Trace the failure through the codebase (router → service → model → schema)
    - Identify the root cause
    - Apply the fix
@@ -62,9 +74,11 @@ Find and fix the planted bugs WITHOUT reading the answer keys.
 - Was your fix the same or equivalent?
 - How long did it take vs the 20-min target?
 
+**If there is a stretch bug:** Verify that leaving it unfixed does NOT block Acts 3-4. Revert the stretch bug fix, then confirm the recommended feature is still specifiable and buildable with the stretch bug present. If the stretch bug interferes with the feature exercise, flag it as a **FAIL** — stretch bugs must be safe to skip.
+
 ## Act 3 — Spec (Target: 20 min for humans)
 
-1. Read `.hol/features/proposals.md`
+1. Read `.hol/features/briefs.md` (the participant-facing file — do NOT read `proposals.md`, which contains facilitator-only implementation details)
 2. Pick the recommended feature (or any feature)
 3. Read the feature brief (the 1-2 sentence description)
 4. Fill out `.hol/templates/feature-spec.md` for the chosen feature
@@ -145,9 +159,6 @@ Date: {today}
 Undo all your changes after generating the report (the lab should be left in its "bugged" state for participants):
 ```bash
 git checkout -- .
+git clean -fd --exclude=.hol/validation/
 ```
-
-Keep only the validation report:
-```bash
-git checkout HEAD -- .hol/validation/
-```
+The `git checkout` reverts tracked files. The `git clean` removes untracked files created during Act 4 (new services, tests, etc.) while preserving the validation report directory.

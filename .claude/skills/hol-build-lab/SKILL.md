@@ -82,7 +82,7 @@ Run `/hol-brand` with the company profile from the brief. This ensures all namin
 Run `/hol-data` with the domain description. This replaces placeholder seed data with realistic entries. Commit the result.
 
 ### 4c. Feature Ideas
-Run `/hol-feature` to generate 3-5 feature proposals. These go into `.hol/features/proposals.md`. The user (or the brief) picks one to leave as the exercise. Commit the result.
+Run `/hol-feature` to generate 3-5 feature proposals. This produces two files: `.hol/features/briefs.md` (participant-facing, brief descriptions only) and `.hol/features/proposals.md` (facilitator-only, full details). The user (or the brief) picks one to leave as the exercise. Commit the result.
 
 ### 4d. Plant Bugs
 Run `/hol-bug` to plant 1-2 multi-file bugs. Answer keys go to `.hol/bugs/answers.md`. Commit the result.
@@ -135,8 +135,8 @@ What problem does this feature solve?
 Create `.hol/facilitator/README.md` combining:
 - Workshop timing (from `references/act-definitions.md`)
 - Bug answer keys (from `.hol/bugs/answers.md`)
-- Feature proposals (from `.hol/features/proposals.md`)
-- The feature brief to hand out in Act 3
+- Feature proposals (from `.hol/features/proposals.md`) — facilitator-only detail
+- Reference to `.hol/features/briefs.md` as the handout for Act 3
 - Tips for helping stuck participants
 
 ### Validator Skill

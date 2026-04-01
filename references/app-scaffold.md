@@ -35,7 +35,8 @@ This document defines the standard architecture for HOL lab apps. When generatin
 │   ├── templates/
 │   │   └── feature-spec.md  # Spec template for Act 3
 │   ├── features/
-│   │   └── proposals.md     # Feature ideas from hol-feature
+│   │   ├── briefs.md        # Participant-facing feature briefs
+│   │   └── proposals.md     # Facilitator-only detailed proposals
 │   ├── bugs/
 │   │   └── answers.md       # Bug answer keys (facilitator only)
 │   ├── facilitator/

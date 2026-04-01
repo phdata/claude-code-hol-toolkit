@@ -48,6 +48,9 @@ Choose injection points that meet ALL criteria:
 - [ ] Be a typo or syntax error
 - [ ] Require domain expertise to understand
 
+### Additional constraint for stretch bugs
+A stretch bug must be **safe to leave unfixed** if a participant runs out of time. It must NOT block Acts 3-4 — meaning the feature build exercise must still be completable with the stretch bug present. In practice this means the stretch bug should affect a different data flow or endpoint than the one used by the recommended feature.
+
 ## Step 3: Bug Pattern Catalog
 
 Choose from these patterns (adapt to the specific codebase):
@@ -104,6 +107,7 @@ FACILITATOR ONLY — Do not share with participants.
 
 ## Bug 1: {Short Name}
 
+**Difficulty:** Standard
 **Symptom:** {What the participant sees — which test fails, what API returns wrong}
 
 **Root Cause:** {1-2 sentence explanation}
@@ -133,7 +137,15 @@ def test_{bug_name}_regression():
 - After 15 min: "The issue is in the {service/schema/query} layer"
 ```
 
-Repeat for each bug.
+Repeat for each bug. If planting 2 bugs, label the second as:
+
+```markdown
+## Bug 2: {Short Name} *(Stretch)*
+
+**Difficulty:** Stretch
+```
+
+Mark stretch bugs clearly so facilitators can skip them for time-constrained or less-experienced audiences. The first bug should always be the primary one that fits within the 20-min Act 2 window.
 
 ## Step 6: Verify Final State
 
