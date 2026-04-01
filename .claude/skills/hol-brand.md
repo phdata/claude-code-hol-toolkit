@@ -76,8 +76,8 @@ For each file:
 
 Run the full test suite and app startup:
 ```bash
-pytest
-uvicorn main:app --reload  # smoke test
+uv run pytest
+uv run uvicorn main:app --reload  # smoke test
 ```
 
 If anything breaks, fix it. The app must be fully functional after branding.

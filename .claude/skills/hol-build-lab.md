@@ -51,7 +51,7 @@ Follow the architecture in `references/app-scaffold.md`. Generate a **fully work
 - `seed.py` — Populates the database with 10-20 records per entity (placeholder data for now)
 - `tests/conftest.py` — Test fixtures (test database, test client)
 - `tests/test_*.py` — 5-10 tests covering main flows
-- `requirements.txt` — fastapi, uvicorn, sqlalchemy, pydantic, pytest, httpx
+- `pyproject.toml` — project metadata, dependencies (fastapi, uvicorn, sqlalchemy, pydantic, pytest, httpx), requires-python >= 3.11
 - `README.md` — Minimal (app name, one sentence, how to run)
 
 ### Architecture Rules
@@ -59,14 +59,14 @@ Follow the architecture in `references/app-scaffold.md`. Generate a **fully work
 - At least one enum-like field (status, tier, category) on a model.
 - At least one foreign key relationship between models.
 - Use domain-specific names everywhere — no generic "item", "record", "entity".
-- The app must start with `uvicorn main:app --reload` and all tests must pass with `pytest`.
+- The app must start with `uv run uvicorn main:app --reload` and all tests must pass with `uv run pytest`.
 
 ### Verify the base app works:
 ```bash
-pip install -r requirements.txt
-python seed.py
-pytest
-uvicorn main:app --reload  # quick smoke test, then stop
+uv sync
+uv run python seed.py
+uv run pytest
+uv run uvicorn main:app --reload  # quick smoke test, then stop
 ```
 
 **Commit** the working base app: `git add -A && git commit -m "Add base {app-name} app"`
@@ -92,10 +92,10 @@ Run `/hol-bug` to plant 1-2 multi-file bugs. Answer keys go to `.hol/bugs/answer
 ### CLAUDE.md (Participant Starter)
 Create a `CLAUDE.md` that tells participants:
 - App name and one-sentence description
-- How to install: `pip install -r requirements.txt`
-- How to seed: `python seed.py`
-- How to run: `uvicorn main:app --reload`
-- How to test: `pytest`
+- How to install: `uv sync`
+- How to seed: `uv run python seed.py`
+- How to run: `uv run uvicorn main:app --reload`
+- How to test: `uv run pytest`
 - Stack: Python, FastAPI, SQLite
 - Do NOT include bug hints, feature ideas, or architecture details
 
@@ -146,10 +146,10 @@ Commit all infrastructure files.
 
 ## Step 6: Final Verification
 
-1. Fresh install: `pip install -r requirements.txt`
-2. Seed the database: `python seed.py`
-3. Run tests: `pytest` — document which tests fail (these are the bug symptoms)
-4. Start the app: `uvicorn main:app --reload` — verify it starts and serves data
+1. Fresh install: `uv sync`
+2. Seed the database: `uv run python seed.py`
+3. Run tests: `uv run pytest` — document which tests fail (these are the bug symptoms)
+4. Start the app: `uv run uvicorn main:app --reload` — verify it starts and serves data
 5. Report the final state to the user:
    - Total file count
    - Which tests fail and why (bug symptoms)

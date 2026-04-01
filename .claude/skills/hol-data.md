@@ -96,9 +96,9 @@ if __name__ == "__main__":
 ## Step 4: Verify
 
 ```bash
-python seed.py          # Should complete without errors
-pytest                  # All tests should still pass
-uvicorn main:app --reload  # Quick check that data is served
+uv run python seed.py          # Should complete without errors
+uv run pytest                  # All tests should still pass
+uv run uvicorn main:app --reload  # Quick check that data is served
 ```
 
 Test a few API endpoints to confirm data is visible and relationships work.

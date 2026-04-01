@@ -87,8 +87,8 @@ Choose from these patterns (adapt to the specific codebase):
 For each bug:
 
 1. **Make the code change** — a small, targeted edit (typically 1-3 lines changed per file)
-2. **Verify the app still starts** — `uvicorn main:app --reload` should work
-3. **Verify symptoms are visible** — run `pytest` and confirm the right tests fail with useful (not cryptic) error messages
+2. **Verify the app still starts** — `uv run uvicorn main:app --reload` should work
+3. **Verify symptoms are visible** — run `uv run pytest` and confirm the right tests fail with useful (not cryptic) error messages
 4. **Document the answer key**
 
 ## Step 5: Write Answer Keys
@@ -138,8 +138,8 @@ Repeat for each bug.
 ## Step 6: Verify Final State
 
 ```bash
-pytest  # Some tests should fail — document which ones
-uvicorn main:app --reload  # App should still start
+uv run pytest  # Some tests should fail — document which ones
+uv run uvicorn main:app --reload  # App should still start
 ```
 
 Report to the user:

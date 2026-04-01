@@ -17,7 +17,7 @@ A toolkit of 6 skills that automate the creation and validation of HOL workshop 
 
 ## Default Stack
 
-Generated lab apps use: Python, FastAPI, SQLite, pytest. ~10-15 files.
+Generated lab apps use: Python 3.11+, FastAPI, SQLite, pytest, managed by [uv](https://docs.astral.sh/uv/). ~10-15 files.
 
 ## Reference Docs
 

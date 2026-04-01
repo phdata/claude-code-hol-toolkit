@@ -20,10 +20,10 @@ Simulate a cold start. You've never seen this repo before.
 1. Read `CLAUDE.md` — is it clear enough to get started?
 2. Install and run:
    ```bash
-   pip install -r requirements.txt
-   python seed.py
-   pytest
-   uvicorn main:app --reload
+   uv sync
+   uv run python seed.py
+   uv run pytest
+   uv run uvicorn main:app --reload
    ```
 3. Explore the codebase — map the architecture, understand the domain
 4. Trace one main data flow (e.g., "how does a booking get created?")

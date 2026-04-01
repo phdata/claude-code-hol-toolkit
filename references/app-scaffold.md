@@ -29,7 +29,7 @@ This document defines the standard architecture for HOL lab apps. When generatin
 │   ├── conftest.py          # Pytest fixtures (test client, test db)
 │   ├── test_{domain_a}.py
 │   └── test_{domain_b}.py
-├── requirements.txt
+├── pyproject.toml           # Project metadata + dependencies (uv managed)
 ├── CLAUDE.md                # Participant starter (NO bug hints)
 ├── .hol/
 │   ├── templates/
@@ -131,21 +131,30 @@ Bugs should span at least 2 of these layers to create a realistic debugging exer
 - Tests should be good enough that planted bugs cause visible failures
 - Use descriptive test names: `test_gold_guest_gets_gold_discount`
 
-### requirements.txt
+### pyproject.toml
+```toml
+[project]
+name = "{app-name}"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn>=0.34.0",
+    "sqlalchemy>=2.0",
+    "pydantic>=2.0",
+    "pytest>=8.0",
+    "httpx>=0.28.0",
+]
 ```
-fastapi>=0.115.0
-uvicorn>=0.34.0
-sqlalchemy>=2.0
-pydantic>=2.0
-pytest>=8.0
-httpx>=0.28.0
-```
+
+Labs use [uv](https://docs.astral.sh/uv/) for dependency and Python version management. Participants run `uv sync` to create a virtualenv and install deps (uv will auto-fetch the right Python if needed).
 
 ### CLAUDE.md (Participant Starter)
 Should include:
 - App name and one-sentence description
-- How to set up: `pip install -r requirements.txt`
-- How to run: `uvicorn main:app --reload`
-- How to test: `pytest`
-- Stack summary (Python, FastAPI, SQLite)
+- How to set up: `uv sync`
+- How to seed: `uv run python seed.py`
+- How to run: `uv run uvicorn main:app --reload`
+- How to test: `uv run pytest`
+- Stack summary (Python 3.11+, FastAPI, SQLite, uv)
 - NO hints about bugs, features, or internal architecture

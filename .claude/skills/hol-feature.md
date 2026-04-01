@@ -27,7 +27,7 @@ Propose **3-5 features**. Each must meet ALL of these criteria:
 - **Buildable**: ~25 min implementation time with Claude Code (not trivial, not huge)
 - **Specifiable**: Can be described in a 1-2 sentence brief, specced in ~5 min
 - **Demo-able**: Has a visible before/after (new endpoint returns different data, new logic changes behavior)
-- **No new dependencies**: Uses only what's in requirements.txt
+- **No new dependencies**: Uses only what's in pyproject.toml
 - **Standalone**: Doesn't depend on other proposed features
 
 ### Good Feature Patterns
