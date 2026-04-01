@@ -1,0 +1,11 @@
+# Client briefs — never commit to the toolkit repo
+references/example-brief-*.pdf
+*.brief.pdf
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# OS
+.DS_Store
