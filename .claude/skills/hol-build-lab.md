@@ -139,6 +139,9 @@ Create `.hol/facilitator/README.md` combining:
 - The feature brief to hand out in Act 3
 - Tips for helping stuck participants
 
+### Validator Skill
+Copy `.claude/skills/hol-run-lab.md` from the toolkit into the generated lab repo so `/hol-run-lab` can be run directly from the lab directory.
+
 ### .gitignore addition
 Add `.hol/bugs/` and `.hol/facilitator/` to `.gitignore` so participants don't see answer keys.
 
